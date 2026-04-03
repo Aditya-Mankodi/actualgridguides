@@ -1,0 +1,32 @@
+# Build outputs
+dist/
+build/
+
+# Dependencies (if you add any later)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# OS temp
+*.tmp
+*.temp
