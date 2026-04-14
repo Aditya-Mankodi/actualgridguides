@@ -13,29 +13,10 @@
 
     <h2>GridGuides Data Loader (Local)</h2>
     <div id="debug">Loading from local scripts...</div>
+    <div id="app"></div>
 
     <script src="data/series_profiles.js"></script>
     <script src="data/questions.js"></script>
-
-    <script>
-        const debugDiv = document.getElementById('debug');
-
-        // 2. Simply check if the variables exist
-        function initMVP() {
-            if (typeof SERIES_DATA !== 'undefined' && typeof QUESTIONS_DATA !== 'undefined') {
-                debugDiv.innerHTML = `
-                    <div class="success">✅ Series loaded: ${SERIES_DATA.length}</div>
-                    <div class="success">✅ Questions loaded: ${QUESTIONS_DATA.length}</div>
-                    <div>First series: <strong>${SERIES_DATA[0].name}</strong></div>
-                    <hr style="border:0; border-top:1px solid #333; margin: 1rem 0;">
-                    <div class="success">🚀 Ready to code quiz logic!</div>
-                `;
-            } else {
-                debugDiv.innerHTML = `<div style="color:red">❌ Data variables not found. Check file paths.</div>`;
-            }
-        }
-
-        initMVP();
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>
