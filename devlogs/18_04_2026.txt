@@ -1,0 +1,34 @@
+# 2026-04-18: ApexAE Brand Integration
+
+**Time:** 2:45 PM GST  
+**Duration:** 30 mins
+
+## Progress ✅
+- [x] ApexAE brand spec documented (black/red/off-white, DIN Condensed Bold Italic UPPERCASE)
+- [x] Cursor branding prompt created (restyle + future attachments)
+- [x] GridGuides functionality validated (quiz → recs working)
+- [x] Design direction locked: F1 dashboard vibe, aggressive/minimal
+
+## Decisions 📋
+- **Brand-first** → Restyle over new features (ApexAE extension feel)
+- **CSS only** → Zero JS changes, pure visual layer
+- **Future-proof** → Prompt covers embeds/attachments automatically
+- **Racing authentic** → Checkered flags, speed lines, silhouette logo
+
+## Code Status
+✅ Core quiz + rec engine (dot product)
+✅ Responsive mobile/laptop
+✅ ApexAE branding prompt ready
+⏳ Cursor restyle execution
+
+
+## Next
+- Run Cursor brand prompt → visual polish
+- Test on phone → ApexAE mates feedback
+- GitHub Pages deploy  
+- Embed wrapper for community site
+
+## Blockers
+None. Brand system locked, execution straightforward.
+
+**Status:** Functionality → now premium branded. Week 3 embed ready.

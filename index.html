@@ -3,17 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>GridGuides MVP (Local Browser Mode)</title>
-    <style>
-        body { font-family: sans-serif; background: #121212; color: #e0e0e0; padding: 2rem; }
-        #debug { background: #1e1e1e; border: 1px solid #333; padding: 1.5rem; border-radius: 8px; font-family: monospace; }
-        .success { color: #4caf50; font-weight: bold; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <h2>GridGuides Data Loader (Local)</h2>
-    <div id="debug">Loading from local scripts...</div>
-    <div id="app"></div>
+    <header class="aa-header" role="banner">
+        <div class="aa-shell aa-header__inner">
+            <div class="aa-brand" aria-label="ApexAE">
+                <span class="aa-logo" aria-hidden="true">
+                    <svg viewBox="0 0 320 72" width="180" height="40" focusable="false" role="img" aria-label="ApexAE logo">
+                        <defs>
+                            <linearGradient id="aaRed" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0" stop-color="#FF0000" stop-opacity="0.0"/>
+                                <stop offset="0.12" stop-color="#FF0000" stop-opacity="1"/>
+                                <stop offset="1" stop-color="#FF0000" stop-opacity="1"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- red speed lines -->
+                        <path d="M8 20 H170" stroke="url(#aaRed)" stroke-width="6" stroke-linecap="square"/>
+                        <path d="M8 34 H190" stroke="#FF0000" stroke-width="6" stroke-linecap="square" opacity="0.95"/>
+                        <path d="M8 48 H150" stroke="#FF0000" stroke-width="6" stroke-linecap="square" opacity="0.85"/>
+                        <!-- black formula-style silhouette -->
+                        <path d="M206 44
+                                 c10 0 18-6 22-14
+                                 h18
+                                 c12 0 18 5 22 12
+                                 l8 0
+                                 c8 0 14 6 14 12
+                                 h-18
+                                 c-2-7-9-12-17-12
+                                 s-15 5-17 12
+                                 h-46
+                                 c-2-7-9-12-17-12
+                                 s-15 5-17 12
+                                 h-20
+                                 c-3 0-6-3-6-6
+                                 s3-6 6-6
+                                 h10
+                                 c5-8 14-13 26-13
+                                 z"
+                              fill="#000000"/>
+                        <circle cx="160" cy="56" r="10" fill="#000000"/>
+                        <circle cx="252" cy="56" r="10" fill="#000000"/>
+                    </svg>
+                </span>
+                <span class="aa-wordmark">APEXAE</span>
+            </div>
+
+            <div class="aa-header__meta">
+                <div class="aa-tag">GRIDGUIDES</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="aa-shell" role="main">
+        <h2 class="aa-title">GridGuides Data Loader (Local)</h2>
+        <div id="debug" class="aa-debug">Loading from local scripts...</div>
+        <div id="app"></div>
+    </main>
+
+    <footer class="aa-footer" role="contentinfo">
+        <div class="aa-shell aa-footer__inner">
+            <div class="aa-footer__brand">
+                <span class="aa-footer__logo" aria-hidden="true"></span>
+                <span class="aa-footer__text">APEXAE</span>
+            </div>
+            <div class="aa-footer__fineprint">MOTORSPORT QUIZ INTERFACE</div>
+        </div>
+    </footer>
 
     <script src="data/series_profiles.js"></script>
     <script src="data/questions.js"></script>
