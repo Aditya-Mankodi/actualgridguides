@@ -1,12 +1,8 @@
 const SERIES_DATA = [
-  { "id": "f1", "name": "Formula 1", "vector": [10, 10, 2, 9], "starter": "Drive to Survive (Netflix)" },
-  { "id": "indy", "name": "IndyCar", "vector": [9, 7, 8, 7], "starter": "100 Days to Indy (The CW)" },
-  { "id": "wec", "name": "WEC", "vector": [7, 10, 5, 6], "starter": "Le Mans 24 Hours Official Film" },
-  { "id": "nascar", "name": "NASCAR", "vector": [8, 5, 10, 10], "starter": "NASCAR: Full Speed (Netflix)" },
-  { "id": "fe", "name": "Formula E", "vector": [5, 9, 9, 6], "starter": "Formula E YouTube Highlights" },
-  { "id": "imsa", "name": "IMSA", "vector": [7, 8, 9, 7], "starter": "Win the Weekend (YouTube)" },
-  { "id": "motogp", "name": "MotoGP", "vector": [10, 8, 6, 9], "starter": "MotoGP Unlimited (Prime)" },
-  { "id": "wrc", "name": "WRC", "vector": [9, 8, 7, 8], "starter": "Red Bull TV Coverage" },
-  { "id": "f1ac", "name": "F1 Academy", "vector": [6, 7, 8, 8], "starter": "F1 Academy Docuseries" },
-  { "id": "supercars", "name": "Supercars", "vector": [8, 6, 7, 9], "starter": "Supercars YouTube" }
+  { "id": "f1", "name": "Formula 1", "vector": [0.95, 0.8, 0.7, 0.3], "starter": "Drive to Survive (Netflix)" },
+  { "id": "nascar", "name": "NASCAR", "vector": [0.4, 0.5, 0.8, 0.9], "starter": "NASCAR: Full Speed (Netflix)" },
+  { "id": "motogp", "name": "MotoGP", "vector": [0.9, 0.6, 0.4, 0.7], "starter": "MotoGP Unlimited (Prime Video)" },
+  { "id": "indycar", "name": "IndyCar", "vector": [0.7, 0.65, 0.6, 0.8], "starter": "100 Days to Indy (The CW)" },
+  { "id": "wec", "name": "WEC", "vector": [0.9, 0.9, 1.0, 0.5], "starter": "Le Mans 24 Hours Official Film (YouTube)" },
+  { "id": "wrc", "name": "WRC", "vector": [0.6, 0.7, 0.3, 0.95], "starter": "Red Bull TV Coverage (Free)" }
 ];

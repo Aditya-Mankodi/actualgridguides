@@ -1,0 +1,47 @@
+```
+# 2026-04-19: Series Data + Questions Finalized
+
+**Time:** 4:00 PM GST  
+**Duration:** 45 mins
+
+## Progress ✅
+- [x] Updated SERIES_DATA → 6 core series (F1, NASCAR, MotoGP, IndyCar, WEC, WRC)
+- [x] Real PRD vectors applied (0-1 scale, 4 dimensions)
+- [x] Starter packs validated (Netflix/Prime/YouTube accessible)
+- [x] QUESTIONS_DATA reviewed + approved for MVP
+- [x] Q1-8 map perfectly to 4-dim vectors (speed/tech/access/drama)
+
+## Decisions 📋
+- **6 series focus** → Tight, high-quality recs over quantity
+- **Questions "good enough"** → Ship → test → iterate
+- **4-dim vectors** → Simplifies math, captures series DNA
+- **No new dimensions** → Q5-8 reinforce core 4 (MVP speed)
+
+## Code Status
+```
+✅ SERIES_DATA (6 series → F1/NASCAR/MotoGP/IndyCar/WEC/WRC)
+✅ QUESTIONS_DATA (9 questions → speed/tech/access/drama)  
+✅ Core functionality battle-tested
+✅ ApexAE branding prompt ready
+```
+
+## Data Mapping
+```
+speed    → Q1, Q5 (F1/MotoGP high)
+tech     → Q2, Q6 (WEC/F1 high)  
+access   → Q3, Q7 (NASCAR/IndyCar high)
+drama    → Q4, Q8 (NASCAR/WRC high)
+hardcore → Q9 (bonus filter)
+```
+
+## Next
+- Deploy GitHub Pages → live link for ApexAE testing
+- User tests → "Does MotoGP rec make sense for chaos fans?"
+- Brand restyle execution (black/red/off-white DIN)
+- Embed wrapper for community site
+
+## Blockers
+None. Data locked, functionality solid, design queued.
+
+**Status:** Production-ready dataset. Week 3 = deploy + polish.
+```
