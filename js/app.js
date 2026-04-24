@@ -1,6 +1,11 @@
 (() => {
   const debugDiv = document.getElementById("debug");
   const appRoot = document.getElementById("app");
+  const starterPackSection = document.getElementById("starter-pack");
+  const starterSeriesTitle = document.getElementById("starterSeriesTitle");
+  const starterPackGrid = document.getElementById("starterPackGrid");
+  const starterBackBtn = document.getElementById("starterBackBtn");
+  let lastResultsScrollY = 0;
 
   function setDebugOk() {
     if (!debugDiv) return;
@@ -84,6 +89,158 @@
     const fallback = el("div", { id: "app" });
     document.body.appendChild(fallback);
     return fallback;
+  }
+
+  function normalizeName(s) {
+    return String(s || "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+  }
+
+  function findSeriesByIdOrName(seriesId, seriesName) {
+    if (typeof SERIES_DATA === "undefined") return null;
+    const list = Array.isArray(SERIES_DATA) ? SERIES_DATA : [];
+    if (seriesId) {
+      const exact = list.find((s) => String(s.id) === String(seriesId));
+      if (exact) return exact;
+    }
+    const n = normalizeName(seriesName);
+    if (!n) return null;
+    return list.find((s) => normalizeName(s?.name) === n) || null;
+  }
+
+  function placeholderImgDataUri(label = "200×150") {
+    const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#120000"/>
+            <stop offset="1" stop-color="#000000"/>
+          </linearGradient>
+        </defs>
+        <rect x="0.5" y="0.5" width="199" height="149" fill="url(#g)" stroke="#ff0000" stroke-width="1"/>
+        <path d="M0 120 L60 70 L105 105 L140 85 L200 125 L200 150 L0 150 Z" fill="rgba(255,0,0,0.12)"/>
+        <text x="100" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="rgba(238,234,234,0.92)" letter-spacing="1">
+          ${String(label).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+        </text>
+      </svg>
+    `.trim();
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+  }
+
+  function buildStarterCategories(series) {
+    const base = [
+      { key: "watch_first", icon: "▶️", title: "WATCH THIS FIRST" },
+      { key: "machine", icon: "🏎️", title: "THE MACHINE" },
+      { key: "format_101", icon: "📘", title: "FORMAT 101" },
+      { key: "history", icon: "🕰️", title: "HISTORY" },
+      { key: "drivers", icon: "👤", title: "MUST-KNOW DRIVERS" },
+      { key: "follow", icon: "📡", title: "WHERE TO FOLLOW" },
+      { key: "trivia", icon: "❓", title: "TRIVIA" },
+      { key: "tbd", icon: "🧩", title: "TBD" },
+    ];
+
+    const custom = Array.isArray(series?.starterPackCategories) ? series.starterPackCategories : null;
+    if (custom && custom.length === 8) return custom;
+    return base;
+  }
+
+  function showStarterPackForSeries(seriesId, seriesName) {
+    const series = findSeriesByIdOrName(seriesId, seriesName);
+    if (!starterPackSection || !starterSeriesTitle || !starterPackGrid) return;
+    if (!series) return;
+
+    lastResultsScrollY = window.scrollY || 0;
+
+    starterSeriesTitle.textContent = String(series.name || "SERIES").toUpperCase();
+    starterPackGrid.innerHTML = "";
+
+    const cats = buildStarterCategories(series);
+    cats.forEach((c) => {
+      const card = el("article", { class: "starter-card" }, [
+        el("div", { class: "starter-card__head" }, [
+          el("div", { class: "starter-card__icon", text: c.icon || "📌", "aria-hidden": "true" }),
+          el("div", { class: "starter-card__title", text: String(c.title || "").toUpperCase() }),
+        ]),
+        el("img", {
+          class: "starter-card__img",
+          src: placeholderImgDataUri("200×150"),
+          alt: "",
+          loading: "lazy",
+          width: "200",
+          height: "150",
+        }),
+        el("div", { class: "starter-card__body", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }),
+      ]);
+      starterPackGrid.appendChild(card);
+    });
+
+    starterPackSection.classList.add("starter-pack--active");
+    starterPackSection.setAttribute("aria-hidden", "false");
+    starterPackSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function hideStarterPack() {
+    if (!starterPackSection) return;
+    starterPackSection.classList.remove("starter-pack--active");
+    starterPackSection.setAttribute("aria-hidden", "true");
+    window.scrollTo({ top: Math.max(0, lastResultsScrollY - 20), behavior: "smooth" });
+  }
+
+  function decorateResultCards() {
+    const results = document.getElementById("ggResults");
+    if (!results || typeof SERIES_DATA === "undefined") return;
+
+    const cards = Array.from(results.children).filter((n) => n && n.tagName === "DIV");
+    for (const card of cards) {
+      if (card.classList.contains("gg-result-card")) continue;
+
+      const headerLine = card.querySelector("div")?.textContent || "";
+      const m = headerLine.match(/#\d+\s+(.*)$/);
+      const name = (m?.[1] || "").trim();
+      const series = findSeriesByIdOrName(null, name);
+      if (!series) continue;
+
+      card.classList.add("gg-result-card");
+      card.setAttribute("role", "button");
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("aria-label", `Open starter pack for ${series.name}`);
+      card.dataset.seriesId = String(series.id);
+    }
+  }
+
+  function wireStarterPackInteractions() {
+    const results = document.getElementById("ggResults");
+    if (!results) return;
+
+    results.addEventListener("click", (e) => {
+      const target = e.target?.closest?.(".gg-result-card");
+      if (!target) return;
+      const seriesId = target.dataset.seriesId;
+      const titleText = target.querySelector("div")?.textContent || "";
+      const m = titleText.match(/#\d+\s+(.*)$/);
+      const name = (m?.[1] || "").trim();
+      showStarterPackForSeries(seriesId, name);
+    });
+
+    results.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const target = e.target?.closest?.(".gg-result-card");
+      if (!target) return;
+      e.preventDefault();
+      const seriesId = target.dataset.seriesId;
+      const titleText = target.querySelector("div")?.textContent || "";
+      const m = titleText.match(/#\d+\s+(.*)$/);
+      const name = (m?.[1] || "").trim();
+      showStarterPackForSeries(seriesId, name);
+    });
+
+    if (starterBackBtn) starterBackBtn.addEventListener("click", hideStarterPack);
+
+    const obs = new MutationObserver(() => decorateResultCards());
+    obs.observe(results, { childList: true, subtree: false });
+    decorateResultCards();
   }
 
   function render() {
@@ -292,6 +449,7 @@
     root.appendChild(results);
 
     renderQuestion();
+    wireStarterPackInteractions();
   }
 
   if (document.readyState === "loading") {
