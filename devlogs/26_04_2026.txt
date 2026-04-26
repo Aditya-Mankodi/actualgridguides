@@ -1,0 +1,25 @@
+**Time: 7:13 PM GST**  
+**Duration:** 25 mins
+
+**Progress**
+- Debugged the GridGuides starter pack flow after Cursor spawned an unwanted back button and title instead of making the 3 result cards clickable. [perplexity](https://www.perplexity.ai/search/02cc29f7-5135-490b-84a9-5103b73fd2d0)
+- Reworked the prompt so the previous bad code is explicitly removed before implementing the correct flow. [perplexity](https://www.perplexity.ai/search/e7c9bcc2-9346-4984-a6a0-53e3d7f37b72)
+- Locked the intended behavior: quiz results stay as the 3 recommended series cards, and clicking one opens that series’ starter pack page with 8 placeholder category cards. [perplexity](https://www.perplexity.ai/search/e7c9bcc2-9346-4984-a6a0-53e3d7f37b72)
+
+**Decisions**
+- Keep the MVP simple: vanilla JS, no backend, no history routing, no extra page complexity. [dev](https://dev.to/pbouillon/virtual-url-navigation-using-vanilla-javascript-4o38)
+- Use the existing result cards as the entry point into the starter pack instead of generating separate random UI elements. [perplexity](https://www.perplexity.ai/search/e7c9bcc2-9346-4984-a6a0-53e3d7f37b72)
+- Preserve the ApexAE look with the black/red/off-white palette and DIN Condensed uppercase styling. [apexracinglab](https://apexracinglab.com/brand-guide/)
+
+**Code Status**
+- Results flow is conceptually fixed in the prompt.
+- Starter pack page structure is defined: title, 8 cards, back button. [perplexity](https://www.perplexity.ai/search/e7c9bcc2-9346-4984-a6a0-53e3d7f37b72)
+- Previous broken Cursor-generated UI is being undone and replaced with a clean card-click navigation flow. [perplexity](https://www.perplexity.ai/search/02cc29f7-5135-490b-84a9-5103b73fd2d0)
+
+**Next**
+- Run the new Cursor prompt and verify: click a result card → starter pack opens → 8 placeholder cards appear → back returns to results. [perplexity](https://www.perplexity.ai/search/e7c9bcc2-9346-4984-a6a0-53e3d7f37b72)
+- If it still misbehaves, inspect the result card click handler and the `dataset.series` values first. [youtube](https://www.youtube.com/watch?v=gUudtigf8q8)
+
+**Blockers**
+- None blocking the plan itself.
+- Main risk is Cursor reintroducing extra UI instead of modifying the existing result cards, so the prompt has to stay explicit about deleting the old code first. [perplexity](https://www.perplexity.ai/search/02cc29f7-5135-490b-84a9-5103b73fd2d0)

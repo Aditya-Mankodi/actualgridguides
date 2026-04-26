@@ -61,18 +61,10 @@
         <h2 class="aa-title">GridGuides Data Loader (Local)</h2>
         <div id="debug" class="aa-debug">Loading from local scripts...</div>
         <div id="app"></div>
-        
-        <!-- Starter Pack (populated from quiz results) -->
-        <section id="starter-pack" class="starter-pack" aria-hidden="true">
-            <div class="starter-pack__top">
-                <button id="starterBackBtn" type="button" class="starter-pack__back">
-                    ← Back to results
-                </button>
-                <div class="starter-pack__kicker">Starter Pack</div>
-                <h3 id="starterSeriesTitle" class="starter-pack__title">SERIES</h3>
-            </div>
-
-            <div id="starterPackGrid" class="starter-grid" aria-label="Starter pack categories"></div>
+        <section id="starter-pack" class="hidden">
+            <h1 id="series-title" class="series-title"></h1>
+            <div id="cards-grid" class="cards-grid"></div>
+            <button id="back-to-results" class="back-btn" type="button">← BACK TO RESULTS</button>
         </section>
     </main>
 
